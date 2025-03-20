@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大厂实习笔试全真模拟题库</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 添加图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-book"></i>
+            大厂题库
+        </div>
+        <nav class="nav">
+            <ul>
+                <li>
+                    <a href="#home" class="active">
+                        <i class="fas fa-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="#practice">
+                        <i class="fas fa-tasks"></i>
+                        题库练习
+                    </a>
+                </li>
+                <li>
+                    <a href="#wrong">
+                        <i class="fas fa-bookmark"></i>
+                        错题笔记
+                    </a>
+                </li>
+                <li>
+                    <a href="#search">
+                        <i class="fas fa-search"></i>
+                        搜题
+                    </a>
+                </li>
+                <li>
+                    <a href="#exam">
+                        <i class="fas fa-edit"></i>
+                        模拟考试
+                    </a>
+                </li>
+                <li>
+                    <a href="#daily">
+                        <i class="fas fa-calendar-check"></i>
+                        每日一练
+                    </a>
+                </li>
+                <li>
+                    <a href="#profile">
+                        <i class="fas fa-user"></i>
+                        个人中心
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- 个人中心卡片 -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>未登录</h3>
+                    <p>登录后享受更多功能</p>
+                </div>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <h4>0</h4>
+                    <p>已做题目</p>
+                </div>
+                <div class="stat-item">
+                    <h4>0</h4>
+                    <p>收藏题目</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置按钮 -->
+        <a href="#settings" class="settings-btn">
+            <i class="fas fa-cog"></i>
+            设置
+        </a>
+    </aside>
+
+    <!-- 主要内容区 -->
+    <div class="main-container">
+        <!-- 顶部栏 -->
+        <div class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="搜索题库，如：京东实习笔试题库" class="search-input">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="user-actions">
+                <button class="btn-login">登录</button>
+                <button class="btn-register">注册</button>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <main class="main">
+            <!-- 首页轮播 -->
+            <section class="banner">
+                <div class="container">
+                    <h1>大厂实习笔试全真模拟题库</h1>
+                    <p>海量真题，智能练习，助你轻松通过大厂笔试</p>
+                    <button class="btn-start">开始练习</button>
+                </div>
+            </section>
+
+            <!-- 功能区块 -->
+            <section class="features">
+                <div class="container">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>题库练习</h3>
+                            <p>海量真题，分类练习</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>错题笔记</h3>
+                            <p>智能记录，重点复习</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>模拟考试</h3>
+                            <p>真实体验，计时答题</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>每日一练</h3>
+                            <p>科学规划，持续进步</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 题目展示区 -->
+            <section class="question-preview">
+                <div class="container">
+                    <h2>热门题库</h2>
+                    <div class="question-list">
+                        <!-- 题目卡片示例 -->
+                        <div class="question-card">
+                            <img src="images/algorithm.jpg" alt="算法题库" class="question-cover">
+                            <div class="question-content">
+                                <div class="question-header">
+                                    <div>
+                                        <h3 class="question-title">算法基础训练营</h3>
+                                        <p class="question-info">系统化的算法学习路径，从入门到进阶的最佳实践</p>
+                                    </div>
+                                    <button class="share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                                <div class="question-tags">
+                                    <span class="tag tag-difficulty">中等</span>
+                                    <span class="tag tag-category">算法</span>
+                                </div>
+                                <div class="question-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-book-reader"></i>
+                                        <span>1.2k人学习</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.9分</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第二个题库卡片 -->
+                        <div class="question-card">
+                            <img src="images/frontend.jpg" alt="前端题库" class="question-cover">
+                            <div class="question-content">
+                                <div class="question-header">
+                                    <div>
+                                        <h3 class="question-title">前端开发精选题库</h3>
+                                        <p class="question-info">覆盖前端各个领域的高频面试题，助你一击即中</p>
+                                    </div>
+                                    <button class="share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                                <div class="question-tags">
+                                    <span class="tag tag-difficulty">中等</span>
+                                    <span class="tag tag-category">前端</span>
+                                </div>
+                                <div class="question-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-book-reader"></i>
+                                        <span>2.3k人学习</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8分</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第三个题库卡片 -->
+                        <div class="question-card">
+                            <img src="images/backend.jpg" alt="后端题库" class="question-cover">
+                            <div class="question-content">
+                                <div class="question-header">
+                                    <div>
+                                        <h3 class="question-title">后端开发进阶题库</h3>
+                                        <p class="question-info">深入后端核心技术，掌握系统设计精髓</p>
+                                    </div>
+                                    <button class="share-btn">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                                <div class="question-tags">
+                                    <span class="tag tag-difficulty">困难</span>
+                                    <span class="tag tag-category">后端</span>
+                                </div>
+                                <div class="question-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-book-reader"></i>
+                                        <span>1.8k人学习</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.7分</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 大厂实习笔试全真模拟题库</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="login-page">
+        <!-- 左侧登录区域 -->
+        <div class="login-left">
+            <div class="login-content">
+                <div class="login-logo">
+                    <i class="fas fa-book"></i>
+                    <span>大厂题库</span>
+                </div>
+
+                <!-- 登录方式切换 -->
+                <div class="login-tabs">
+                    <div class="login-tab active">手机号登录</div>
+                    <div class="login-tab">二维码登录</div>
+                </div>
+
+                <!-- 手机号登录表单 -->
+                <div class="login-form">
+                    <div class="phone-input-group">
+                        <select class="country-code">
+                            <option value="+86">+86</option>
+                            <option value="+852">+852</option>
+                            <option value="+853">+853</option>
+                            <option value="+886">+886</option>
+                        </select>
+                        <input type="tel" class="phone-input" placeholder="请输入手机号">
+                    </div>
+                    <button class="btn-continue">继续</button>
+                    <p class="login-terms">
+                        登录即表明您同意我们的<a href="#service">服务条款</a>和<a href="#privacy">隐私政策</a>
+                    </p>
+                </div>
+
+                <!-- 二维码登录区域 -->
+                <div class="qrcode-container">
+                    <div class="qrcode-box">
+                        <!-- 这里放二维码图片 -->
+                        <img src="images/qrcode.png" alt="登录二维码">
+                    </div>
+                    <p class="qrcode-tips">
+                        打开手机APP扫码登录<br>
+                        更快更安全
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧背景区域 -->
+        <div class="login-right">
+            <div class="login-right-content">
+                <h2>多种大厂主流题型全覆盖</h2>
+                <p>海量真题，智能练习，助你轻松通过大厂笔试</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 登录表单验证
+        const phoneInput = document.querySelector('.phone-input');
+        const btnContinue = document.querySelector('.btn-continue');
+        
+        phoneInput.addEventListener('input', function() {
+            if(this.value.length >= 11) {
+                btnContinue.classList.add('active');
+            } else {
+                btnContinue.classList.remove('active');
+            }
+        });
+
+        // 登录方式切换
+        const loginTabs = document.querySelectorAll('.login-tab');
+        const loginForm = document.querySelector('.login-form');
+        const qrcodeContainer = document.querySelector('.qrcode-container');
+
+        loginTabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                loginTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                if(index === 0) {
+                    loginForm.style.display = 'block';
+                    qrcodeContainer.style.display = 'none';
+                } else {
+                    loginForm.style.display = 'none';
+                    qrcodeContainer.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
