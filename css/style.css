@@ -146,20 +146,27 @@ body {
     box-shadow: 0 0 0 3px rgba(64, 112, 244, 0.1);
 }
 
-.user-actions {
-    display: flex;
-    gap: 12px;
+.user-actions a {
+    display: inline-flex;
     align-items: center;
+    height: 44px; 
 }
 
-.btn-login, .btn-register {
+
+.btn-login, 
+.btn-register {
+    box-sizing: border-box;  
     padding: 10px 24px;
+    height: 44px;            
+    min-width: 80px;         
     border-radius: 8px;
     font-weight: 500;
     font-size: 14px;
+    line-height: 1;          /* 锁定行高 */
     transition: all 0.3s;
+    border: none;         
+    cursor: pointer;
 }
-
 .btn-login {
     color: var(--primary-color);
     background: var(--hover-bg);

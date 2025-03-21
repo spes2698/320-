@@ -17,7 +17,11 @@
             transition: max-height 0.3s ease;
         }
 
-        .active + .sub-menu, .nav li:hover .sub-menu {
+        .sub-menu.open {
+            max-height: 500px;
+        }
+
+        .active + .sub-menu {
             max-height: 500px;
         }
 
@@ -228,26 +232,25 @@
                         刷题练习
                     </a>
                     <ul class="sub-menu">
-                        <li><a href="#netapp">网申题库</a></li>
-                        <li><a href="#internet">互联网题库</a></li>
+                        <li><a href="#internet" class="active">互联网题库</a></li>
                         <li><a href="#telecom">三大运营商</a></li>
-                        <li><a href="#fourexam">四大笔试专栏</a></li>
+                        <li><a href="#bigfour">四大笔试专栏</a></li>
                         <li><a href="#banks">五大银行题库</a></li>
                         <li><a href="#sharebanks">股份银行题库</a></li>
-                        <li><a href="#oil">三桶油题库</a></li>
-                        <li><a href="#funds">券商基金题库</a></li>
+                        <li><a href="#oilcompanies">三桶油题库</a></li>
+                        <li><a href="#securities">券商基金题库</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#wrong">
+                    <a href="wrong.html">
                         <i class="fas fa-bookmark"></i>
                         错题笔记
                     </a>
                 </li>
                 <li>
-                    <a href="#search">
+                    <a href="search.html">
                         <i class="fas fa-search"></i>
-                        搜题
+                        搜题功能
                     </a>
                 </li>
                 <li>
@@ -307,8 +310,8 @@
                 </button>
             </div>
             <div class="user-actions">
-                <button class="btn-login">登录</button>
-                <button class="btn-register">注册</button>
+                <a href="login.html"><button class="btn-login">登录</button></a>
+                <a href="register.html"><button class="btn-register">注册</button></a>
             </div>
         </div>
 
@@ -472,52 +475,45 @@
 
     <script src="js/main.js"></script>
     <script>
-        // 侧边栏子菜单展开/收缩功能
+        // 处理子菜单的展开收缩
         document.addEventListener('DOMContentLoaded', function() {
-            const menuItems = document.querySelectorAll('.nav > ul > li');
+            // 确保刷题练习的子菜单默认展开
+            const practiceLi = document.querySelector('.nav li:nth-child(2)');
+            const subMenu = practiceLi.querySelector('.sub-menu');
             
-            // 自动展开当前活动菜单的子菜单
-            const activeMenuItem = document.querySelector('.nav > ul > li > .active');
-            if (activeMenuItem) {
-                const subMenu = activeMenuItem.nextElementSibling;
-                if (subMenu && subMenu.classList.contains('sub-menu')) {
-                    subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
-                }
+            if (practiceLi && subMenu) {
+                // 由于当前在刷题练习页面，确保子菜单默认展开
+                subMenu.classList.add('open');
+                
+                // 点击刷题练习菜单项时的展开/收缩逻辑
+                practiceLi.querySelector('a').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    subMenu.classList.toggle('open');
+                });
             }
             
-            // 点击菜单项切换子菜单展开/收缩状态
-            menuItems.forEach(item => {
-                const link = item.querySelector('a');
-                const subMenu = item.querySelector('.sub-menu');
-                
-                if (subMenu) {
-                    link.addEventListener('click', function(e) {
-                        // 如果不是当前活动页面的链接，则允许导航
-                        if (!this.classList.contains('active')) {
-                            return;
-                        }
-                        
-                        e.preventDefault(); // 阻止链接默认行为
-                        
-                        // 切换子菜单展开/收缩状态
-                        if (subMenu.style.maxHeight) {
-                            subMenu.style.maxHeight = null;
-                        } else {
-                            subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
-                        }
-                    });
-                }
-            });
-            
-            // 处理子菜单内锚点跳转
-            const subMenuLinks = document.querySelectorAll('.sub-menu a');
-            subMenuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    // 移除所有子菜单链接的active类
-                    subMenuLinks.forEach(l => l.classList.remove('active'));
+            // 处理子菜单项的点击，滚动到对应部分
+            const subMenuItems = document.querySelectorAll('.sub-menu a');
+            subMenuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    // 为当前点击的链接添加active类
+                    // 移除所有子菜单项的active类
+                    subMenuItems.forEach(mi => mi.classList.remove('active'));
+                    
+                    // 给当前点击的子菜单项添加active类
                     this.classList.add('active');
+                    
+                    // 获取目标部分并滚动到那里
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });
