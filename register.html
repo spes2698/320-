@@ -9,24 +9,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="register-page">
+    <div class="login-page">
         <!-- 左侧注册区域 -->
-        <div class="register-left">
-            <div class="register-content">
-                <div class="register-logo">
+        <div class="login-left">
+            <div class="login-content">
+                <div class="login-logo">
                     <i class="fas fa-book"></i>
                     <span>大厂题库</span>
                 </div>
 
-                <div class="register-header">
-                    <h2>注册账号</h2>
-                    <p>已有账号？<a href="login.html">立即登录</a></p>
-                </div>
+                <h2 class="register-title">创建账号</h2>
+                <p class="register-subtitle">已有账号？<a href="login.html">立即登录</a></p>
 
                 <!-- 注册表单 -->
-                <form class="register-form">
+                <div class="register-form">
                     <div class="form-group">
-                        <label>手机号码</label>
+                        <label>手机号</label>
                         <div class="phone-input-group">
                             <select class="country-code">
                                 <option value="+86">+86</option>
@@ -40,19 +38,23 @@
 
                     <div class="form-group">
                         <label>验证码</label>
-                        <div class="verify-input-group">
-                            <input type="text" class="verify-input" placeholder="请输入验证码">
-                            <button type="button" class="btn-send-code">获取验证码</button>
+                        <div class="verify-code-group">
+                            <input type="text" class="verify-code-input" placeholder="请输入验证码">
+                            <button class="btn-send-code">获取验证码</button>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>设置密码</label>
                         <div class="password-input-group">
-                            <input type="password" class="password-input" placeholder="请设置8-20位密码">
-                            <button type="button" class="btn-toggle-password">
-                                <i class="fas fa-eye-slash"></i>
-                            </button>
+                            <input type="password" class="password-input" placeholder="请设置密码">
+                            <i class="fas fa-eye-slash toggle-password"></i>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-progress"></div>
+                            </div>
+                            <span class="strength-text">密码强度：弱</span>
                         </div>
                     </div>
 
@@ -60,30 +62,25 @@
                         <label>确认密码</label>
                         <div class="password-input-group">
                             <input type="password" class="password-input" placeholder="请再次输入密码">
-                            <button type="button" class="btn-toggle-password">
-                                <i class="fas fa-eye-slash"></i>
-                            </button>
+                            <i class="fas fa-eye-slash toggle-password"></i>
                         </div>
                     </div>
 
-                    <div class="form-agreement">
+                    <div class="form-group">
                         <label class="checkbox-label">
-                            <input type="checkbox" class="agreement-checkbox">
-                            <span class="checkbox-custom"></span>
-                            <span class="agreement-text">
-                                我已阅读并同意<a href="#terms">服务条款</a>和<a href="#privacy">隐私政策</a>
-                            </span>
+                            <input type="checkbox" class="agree-checkbox">
+                            <span>我已阅读并同意<a href="#terms">服务条款</a>和<a href="#privacy">隐私政策</a></span>
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-register">立即注册</button>
-                </form>
+                    <button class="btn-register">注册</button>
+                </div>
             </div>
         </div>
 
-        <!-- 右侧区域 -->
-        <div class="register-right">
-            <div class="register-right-content">
+        <!-- 右侧背景区域 -->
+        <div class="login-right">
+            <div class="login-right-content">
                 <h2>多种大厂主流题型全覆盖</h2>
                 <p>海量真题，智能练习，助你轻松通过大厂笔试</p>
             </div>
@@ -91,65 +88,67 @@
     </div>
 
     <script>
-        // 密码可见性切换
-        const toggleBtns = document.querySelectorAll('.btn-toggle-password');
-        toggleBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const input = this.parentElement.querySelector('input');
-                const icon = this.querySelector('i');
-                
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                } else {
-                    input.type = 'password';
-                    icon.classList.remove('fa-eye');
-                    icon.classList.add('fa-eye-slash');
-                }
+        // 密码显示切换
+        const togglePassword = document.querySelectorAll('.toggle-password');
+        togglePassword.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
             });
         });
 
-        // 验证码倒计时
+        // 密码强度检测
+        const passwordInput = document.querySelector('.password-input');
+        const strengthProgress = document.querySelector('.strength-progress');
+        const strengthText = document.querySelector('.strength-text');
+
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            if(password.length >= 8) strength++;
+            if(/[A-Z]/.test(password)) strength++;
+            if(/[a-z]/.test(password)) strength++;
+            if(/[0-9]/.test(password)) strength++;
+            if(/[^A-Za-z0-9]/.test(password)) strength++;
+
+            const strengthPercent = (strength / 5) * 100;
+            strengthProgress.style.width = `${strengthPercent}%`;
+            
+            if(strength <= 2) {
+                strengthProgress.style.backgroundColor = '#ff4d4f';
+                strengthText.textContent = '密码强度：弱';
+            } else if(strength <= 4) {
+                strengthProgress.style.backgroundColor = '#faad14';
+                strengthText.textContent = '密码强度：中';
+            } else {
+                strengthProgress.style.backgroundColor = '#52c41a';
+                strengthText.textContent = '密码强度：强';
+            }
+        });
+
+        // 发送验证码
         const btnSendCode = document.querySelector('.btn-send-code');
         let countdown = 60;
-        let timer = null;
-
+        
         btnSendCode.addEventListener('click', function() {
-            if (this.classList.contains('disabled')) return;
+            if(this.disabled) return;
             
-            this.classList.add('disabled');
-            this.textContent = `${countdown}秒后重新获取`;
-            
-            timer = setInterval(() => {
+            this.disabled = true;
+            const timer = setInterval(() => {
+                this.textContent = `${countdown}秒后重试`;
                 countdown--;
-                if (countdown <= 0) {
+                
+                if(countdown < 0) {
                     clearInterval(timer);
-                    this.classList.remove('disabled');
+                    this.disabled = false;
                     this.textContent = '获取验证码';
                     countdown = 60;
-                } else {
-                    this.textContent = `${countdown}秒后重新获取`;
                 }
             }, 1000);
-        });
-
-        // 表单验证
-        const form = document.querySelector('.register-form');
-        const submitBtn = document.querySelector('.btn-register');
-        const agreementCheckbox = document.querySelector('.agreement-checkbox');
-
-        agreementCheckbox.addEventListener('change', function() {
-            submitBtn.classList.toggle('active', this.checked);
-        });
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (!agreementCheckbox.checked) {
-                alert('请先同意服务条款和隐私政策');
-                return;
-            }
-            // 这里添加注册逻辑
         });
     </script>
 </body>

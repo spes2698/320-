@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜题功能 - 大厂实习笔试全真模拟题库</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 添加图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 搜题功能样式 */
+        .search-content {
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: calc(100vh - 60px);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-header {
+            margin-bottom: 30px;
+        }
+
+        .search-main-box {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .main-search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .main-search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(64, 112, 244, 0.2);
+            outline: none;
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .filter-select {
+            padding: 10px;
+            border: 1px solid #e8e8e8;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .filter-tag {
+            display: flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: #f0f5ff;
+            color: var(--primary-color);
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .filter-tag-close {
+            margin-left: 6px;
+            font-size: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .filter-tag-close:hover {
+            color: #f81d22;
+        }
+
+        .search-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-search {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-search:hover {
+            background-color: #2e59d9;
+        }
+
+        .btn-reset {
+            background-color: #f2f2f2;
+            color: #666;
+            border: 1px solid #e8e8e8;
+        }
+
+        .btn-reset:hover {
+            background-color: #e6e6e6;
+        }
+
+        .search-history {
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-action {
+            font-size: 14px;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .section-action:hover {
+            color: var(--primary-color);
+        }
+
+        .history-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: #f5f5f5;
+            color: #555;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background-color: #e6f7ff;
+            color: var(--primary-color);
+        }
+
+        .history-item i {
+            margin-right: 8px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .search-results {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .results-count {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .results-count span {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sort-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .sort-select {
+            padding: 6px 10px;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .result-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .result-item {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .result-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .result-title .highlight {
+            color: #f5222d;
+            font-weight: 600;
+        }
+
+        .result-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .result-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .result-content {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .result-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .result-tag {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background-color: rgba(64, 112, 244, 0.1);
+            color: var(--primary-color);
+        }
+
+        .result-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .result-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-practice {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-practice:hover {
+            background-color: #2e59d9;
+        }
+
+        .btn-add {
+            background-color: #f6ffed;
+            color: #52c41a;
+            border: 1px solid #b7eb8f;
+        }
+
+        .btn-add:hover {
+            background-color: #eaffe8;
+            border-color: #95de64;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .page-btn.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .empty-result {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-icon {
+            font-size: 60px;
+            color: #d9d9d9;
+            margin-bottom: 20px;
+        }
+
+        .empty-text {
+            font-size: 16px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .search-filters {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-actions {
+                flex-direction: column;
+            }
+            
+            .search-btn {
+                width: 100%;
+            }
+            
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .sort-options {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .result-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .result-meta {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-book"></i>
+            大厂题库
+        </div>
+        <nav class="nav">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href="practice.html">
+                        <i class="fas fa-tasks"></i>
+                        刷题练习
+                    </a>
+                </li>
+                <li>
+                    <a href="wrong.html">
+                        <i class="fas fa-bookmark"></i>
+                        错题笔记
+                    </a>
+                </li>
+                <li>
+                    <a href="search.html" class="active">
+                        <i class="fas fa-search"></i>
+                        搜题
+                    </a>
+                </li>
+                <li>
+                    <a href="exam.html">
+                        <i class="fas fa-edit"></i>
+                        模拟考试
+                    </a>
+                </li>
+                <li>
+                    <a href="#profile">
+                        <i class="fas fa-user"></i>
+                        个人中心
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- 个人中心卡片 -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>未登录</h3>
+                    <p>登录后享受更多功能</p>
+                </div>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <h4>0</h4>
+                    <p>已做题目</p>
+                </div>
+                <div class="stat-item">
+                    <h4>0</h4>
+                    <p>收藏题目</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置按钮 -->
+        <a href="#settings" class="settings-btn">
+            <i class="fas fa-cog"></i>
+            设置
+        </a>
+    </aside>
+
+    <!-- 主要内容区 -->
+    <div class="main-container">
+        <!-- 顶部栏 -->
+        <div class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="搜索题库，如：京东实习笔试题库" class="search-input">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="user-actions">
+                <button class="btn-login">登录</button>
+                <button class="btn-register">注册</button>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <main class="main">
+            <div class="search-content">
+                <div class="search-header">
+                    <h1 class="page-title">搜题功能</h1>
+                    <p class="page-subtitle">智能搜索海量题库，快速定位你需要的题目</p>
+                </div>
+                
+                <!-- 主搜索框 -->
+                <div class="search-main-box">
+                    <input type="text" class="main-search-input" placeholder="输入关键词、题目描述或题目编号...">
+                    
+                    <!-- 过滤器 -->
+                    <div class="search-filters">
+                        <div class="filter-group">
+                            <label class="filter-label">企业分类</label>
+                            <select class="filter-select">
+                                <option value="">全部</option>
+                                <option value="bytedance">字节跳动</option>
+                                <option value="tencent">腾讯</option>
+                                <option value="alibaba">阿里巴巴</option>
+                                <option value="baidu">百度</option>
+                                <option value="jd">京东</option>
+                                <option value="meituan">美团</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">难度分级</label>
+                            <select class="filter-select">
+                                <option value="">全部</option>
+                                <option value="easy">简单</option>
+                                <option value="medium">中等</option>
+                                <option value="hard">困难</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">题目类型</label>
+                            <select class="filter-select">
+                                <option value="">全部</option>
+                                <option value="algorithm">算法题</option>
+                                <option value="database">数据库</option>
+                                <option value="frontend">前端开发</option>
+                                <option value="backend">后端开发</option>
+                                <option value="os">操作系统</option>
+                                <option value="network">计算机网络</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">做题状态</label>
+                            <select class="filter-select">
+                                <option value="">全部</option>
+                                <option value="correct">已做对</option>
+                                <option value="wrong">已做错</option>
+                                <option value="undone">未做</option>
+                                <option value="collected">已收藏</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- 已选过滤标签 -->
+                    <div class="filter-tags">
+                        <div class="filter-tag">
+                            字节跳动
+                            <i class="fas fa-times filter-tag-close"></i>
+                        </div>
+                        <div class="filter-tag">
+                            算法题
+                            <i class="fas fa-times filter-tag-close"></i>
+                        </div>
+                        <div class="filter-tag">
+                            困难
+                            <i class="fas fa-times filter-tag-close"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 操作按钮 -->
+                    <div class="search-actions">
+                        <button class="search-btn btn-reset">
+                            <i class="fas fa-undo"></i>
+                            重置
+                        </button>
+                        <button class="search-btn btn-search">
+                            <i class="fas fa-search"></i>
+                            搜索
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 搜索历史 -->
+                <div class="search-history">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i class="fas fa-history"></i>
+                            最近搜索
+                        </div>
+                        <div class="section-action">
+                            <i class="fas fa-trash-alt"></i>
+                            清空历史
+                        </div>
+                    </div>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <i class="fas fa-clock"></i>
+                            动态规划
+                        </div>
+                        <div class="history-item">
+                            <i class="fas fa-clock"></i>
+                            字节跳动 算法题
+                        </div>
+                        <div class="history-item">
+                            <i class="fas fa-clock"></i>
+                            二叉树前序遍历
+                        </div>
+                        <div class="history-item">
+                            <i class="fas fa-clock"></i>
+                            TCP/IP协议
+                        </div>
+                        <div class="history-item">
+                            <i class="fas fa-clock"></i>
+                            React Hooks
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 搜索结果 -->
+                <div class="search-results">
+                    <div class="results-header">
+                        <div class="results-count">
+                            搜索到 <span>32</span> 个相关题目
+                        </div>
+                        <div class="sort-options">
+                            <span class="sort-label">排序方式：</span>
+                            <select class="sort-select">
+                                <option value="relevance">相关度</option>
+                                <option value="newest">最新</option>
+                                <option value="difficulty_asc">难度从低到高</option>
+                                <option value="difficulty_desc">难度从高到低</option>
+                                <option value="popularity">热门程度</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="result-list">
+                        <!-- 结果条目1 -->
+                        <div class="result-item">
+                            <div class="result-header">
+                                <div class="result-title">
+                                    给定一个整数数组，找出数组中和最大的连续子数组（子数组最少包含一个元素）
+                                </div>
+                                <div class="result-meta">
+                                    <span><i class="fas fa-building"></i> 字节跳动</span>
+                                    <span><i class="fas fa-signal"></i> 中等</span>
+                                </div>
+                            </div>
+                            <div class="result-content">
+                                输入: [-2,1,-3,4,-1,2,1,-5,4]<br>
+                                输出: 6<br>
+                                解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+                            </div>
+                            <div class="result-tags">
+                                <div class="result-tag">动态规划</div>
+                                <div class="result-tag">数组</div>
+                                <div class="result-tag">Kadane算法</div>
+                            </div>
+                            <div class="result-actions">
+                                <button class="result-btn btn-add">
+                                    <i class="fas fa-star"></i>
+                                    收藏
+                                </button>
+                                <button class="result-btn btn-practice">
+                                    <i class="fas fa-code"></i>
+                                    开始做题
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 结果条目2 -->
+                        <div class="result-item">
+                            <div class="result-header">
+                                <div class="result-title">
+                                    设计实现一个LRU (最近最少使用) 缓存机制
+                                </div>
+                                <div class="result-meta">
+                                    <span><i class="fas fa-building"></i> 阿里巴巴</span>
+                                    <span><i class="fas fa-signal"></i> 困难</span>
+                                </div>
+                            </div>
+                            <div class="result-content">
+                                实现 LRUCache 类：<br>
+                                - LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存<br>
+                                - int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1<br>
+                                - void put(int key, int value) 如果关键字已经存在，则变更其值；如果不存在，则插入该组「关键字-值」
+                            </div>
+                            <div class="result-tags">
+                                <div class="result-tag">哈希表</div>
+                                <div class="result-tag">链表</div>
+                                <div class="result-tag">设计</div>
+                            </div>
+                            <div class="result-actions">
+                                <button class="result-btn btn-add">
+                                    <i class="fas fa-star"></i>
+                                    收藏
+                                </button>
+                                <button class="result-btn btn-practice">
+                                    <i class="fas fa-code"></i>
+                                    开始做题
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 结果条目3 -->
+                        <div class="result-item">
+                            <div class="result-header">
+                                <div class="result-title">
+                                    手写Promise.all的实现
+                                </div>
+                                <div class="result-meta">
+                                    <span><i class="fas fa-building"></i> 腾讯</span>
+                                    <span><i class="fas fa-signal"></i> 中等</span>
+                                </div>
+                            </div>
+                            <div class="result-content">
+                                实现一个Promise.all函数，接收一个promise数组，返回一个promise，当所有promise都resolved时，返回的promise才resolved，如果有一个promise rejected，则返回的promise rejected。
+                            </div>
+                            <div class="result-tags">
+                                <div class="result-tag">JavaScript</div>
+                                <div class="result-tag">Promise</div>
+                                <div class="result-tag">异步编程</div>
+                            </div>
+                            <div class="result-actions">
+                                <button class="result-btn btn-add">
+                                    <i class="fas fa-star"></i>
+                                    收藏
+                                </button>
+                                <button class="result-btn btn-practice">
+                                    <i class="fas fa-code"></i>
+                                    开始做题
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 分页控件 -->
+                    <div class="pagination">
+                        <div class="page-btn disabled"><i class="fas fa-chevron-left"></i></div>
+                        <div class="page-btn active">1</div>
+                        <div class="page-btn">2</div>
+                        <div class="page-btn">3</div>
+                        <div class="page-btn">4</div>
+                        <div class="page-btn">...</div>
+                        <div class="page-btn">8</div>
+                        <div class="page-btn"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 过滤标签关闭按钮
+            const filterTagCloseButtons = document.querySelectorAll('.filter-tag-close');
+            filterTagCloseButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const tag = this.parentElement;
+                    tag.remove();
+                });
+            });
+            
+            // 历史记录项点击
+            const historyItems = document.querySelectorAll('.history-item');
+            historyItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const searchText = this.textContent.trim();
+                    document.querySelector('.main-search-input').value = searchText;
+                });
+            });
+            
+            // 清空历史
+            const clearHistoryButton = document.querySelector('.section-action');
+            clearHistoryButton.addEventListener('click', function() {
+                const historyList = document.querySelector('.history-list');
+                historyList.innerHTML = '';
+            });
+            
+            // 重置按钮
+            const resetButton = document.querySelector('.btn-reset');
+            resetButton.addEventListener('click', function() {
+                document.querySelector('.main-search-input').value = '';
+                document.querySelectorAll('.filter-select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+                document.querySelector('.filter-tags').innerHTML = '';
+            });
+            
+            // 搜索按钮
+            const searchButton = document.querySelector('.btn-search');
+            searchButton.addEventListener('click', function() {
+                // 这里只是模拟搜索行为，实际项目中应该发送请求到后端
+                alert('搜索功能已触发，关键词：' + document.querySelector('.main-search-input').value);
+            });
+        });
+    </script>
+</body>
+</html> 

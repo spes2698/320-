@@ -755,7 +755,6 @@ body {
 
 .login-form {
     margin-top: 32px;
-    min-height: 240px;
 }
 
 .phone-input-group {
@@ -832,11 +831,6 @@ body {
     text-align: center;
     max-width: 480px;
     padding: 0 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 240px;
 }
 
 .login-right-content h2 {
@@ -845,37 +839,29 @@ body {
     color: var(--text-color);
     margin-bottom: 16px;
     line-height: 1.4;
-    width: 100%;
-    text-align: center;
 }
 
 .login-right-content p {
     font-size: 16px;
     color: #666;
     line-height: 1.6;
-    width: 100%;
-    text-align: center;
 }
 
 /* 二维码登录样式 */
 .qrcode-container {
     display: none;
     text-align: center;
-    min-height: 240px;
     padding: 32px 0;
 }
 
 .qrcode-container.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: block;
 }
 
 .qrcode-box {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 16px;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 24px;
     padding: 16px;
     border: 1px solid var(--border-color);
     border-radius: 16px;
@@ -911,105 +897,46 @@ body {
 }
 
 /* 注册页面样式 */
-.register-page {
-    min-height: 100vh;
-    display: flex;
-    background: #fff;
-}
-
-.register-left {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-    background: #fff;
-}
-
-.register-content {
-    width: 100%;
-    max-width: 400px;
-}
-
-.register-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 40px;
-}
-
-.register-logo i {
+.register-title {
     font-size: 24px;
-    color: var(--primary-color);
-}
-
-.register-logo span {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.register-header {
-    margin-bottom: 40px;
-}
-
-.register-header h2 {
-    font-size: 28px;
     font-weight: 600;
     color: var(--text-color);
     margin-bottom: 8px;
 }
 
-.register-header p {
+.register-subtitle {
     font-size: 14px;
     color: #666;
+    margin-bottom: 32px;
 }
 
-.register-header a {
+.register-subtitle a {
     color: var(--primary-color);
-    font-weight: 500;
+    text-decoration: none;
 }
 
 .register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+    margin-top: 32px;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    margin-bottom: 24px;
 }
 
 .form-group label {
+    display: block;
     font-size: 14px;
-    font-weight: 500;
     color: var(--text-color);
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
-.phone-input-group,
-.verify-input-group,
-.password-input-group {
+.verify-code-group {
     display: flex;
     gap: 12px;
 }
 
-.country-code {
-    width: 80px;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 15px;
-    color: var(--text-color);
-    background: #fff;
-    cursor: pointer;
-}
-
-.phone-input,
-.verify-input,
-.password-input {
+.verify-code-input {
     flex: 1;
     padding: 12px;
     border: 1px solid var(--border-color);
@@ -1018,50 +945,92 @@ body {
     transition: all 0.3s;
 }
 
-.phone-input:focus,
-.verify-input:focus,
-.password-input:focus {
+.verify-code-input:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(64, 112, 244, 0.1);
 }
 
 .btn-send-code {
-    width: 120px;
-    padding: 12px;
-    background: var(--primary-color);
-    color: #fff;
+    padding: 0 16px;
+    background: #fff;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
+    color: var(--primary-color);
     font-size: 14px;
-    font-weight: 500;
+    cursor: pointer;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .btn-send-code:hover {
-    background: #3464E0;
+    border-color: var(--primary-color);
+    background: var(--hover-bg);
 }
 
-.btn-send-code.disabled {
-    background: #e8e8e8;
+.btn-send-code:disabled {
     color: #999;
+    border-color: var(--border-color);
+    background: #f5f5f5;
     cursor: not-allowed;
 }
 
-.btn-toggle-password {
+.password-input-group {
+    position: relative;
+}
+
+.password-input {
+    width: 100%;
     padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s;
+    padding-right: 40px;
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(64, 112, 244, 0.1);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     color: #999;
-    background: transparent;
-    border: none;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.btn-toggle-password:hover {
+.toggle-password:hover {
     color: var(--primary-color);
 }
 
-.form-agreement {
+.password-strength {
     margin-top: 8px;
+}
+
+.strength-bar {
+    height: 4px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.strength-progress {
+    height: 100%;
+    width: 0;
+    background: #ff4d4f;
+    transition: all 0.3s;
+}
+
+.strength-text {
+    font-size: 12px;
+    color: #999;
 }
 
 .checkbox-label {
@@ -1069,52 +1038,32 @@ body {
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    font-weight: normal;
 }
 
-.agreement-checkbox {
-    display: none;
-}
-
-.checkbox-custom {
+.agree-checkbox {
     width: 16px;
     height: 16px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    position: relative;
-    transition: all 0.3s;
+    cursor: pointer;
 }
 
-.agreement-checkbox:checked + .checkbox-custom {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.agreement-checkbox:checked + .checkbox-custom::after {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 2px;
-    width: 4px;
-    height: 8px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.agreement-text {
+.checkbox-label span {
     font-size: 14px;
     color: #666;
 }
 
-.agreement-text a {
+.checkbox-label a {
     color: var(--primary-color);
+    text-decoration: none;
 }
 
 .btn-register {
     width: 100%;
     padding: 14px;
-    background: #e8e8e8;
-    color: #999;
+    background: var(--primary-color);
+    color: #fff;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
@@ -1122,67 +1071,594 @@ body {
     transition: all 0.3s;
 }
 
-.btn-register.active {
-    background: var(--primary-color);
-    color: #fff;
-    cursor: pointer;
-}
-
-.btn-register.active:hover {
+.btn-register:hover {
     background: #3464E0;
+    transform: translateY(-1px);
 }
 
-.register-right {
-    width: 50%;
-    background: linear-gradient(135deg, #e9efff 0%, #f3f6ff 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-}
-
-.register-right-content {
-    text-align: center;
-    max-width: 480px;
-    padding: 0 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 240px;
-}
-
-.register-right-content h2 {
-    font-size: 32px;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 16px;
-    line-height: 1.4;
-    width: 100%;
-    text-align: center;
-}
-
-.register-right-content p {
-    font-size: 16px;
-    color: #666;
-    line-height: 1.6;
-    width: 100%;
-    text-align: center;
+.btn-register:active {
+    transform: translateY(0);
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-    .register-page {
+    .register-title {
+        font-size: 20px;
+    }
+    
+    .verify-code-group {
         flex-direction: column;
     }
     
-    .register-left,
-    .register-right {
+    .btn-send-code {
         width: 100%;
-        padding: 32px;
+        padding: 12px;
+    }
+}
+
+/* 模拟考试页面样式 */
+.exam-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 24px 32px;
+}
+
+/* 顶部标题和按钮区 */
+.exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.exam-header-left h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 4px;
+}
+
+.exam-header-left p {
+    font-size: 14px;
+    color: #666;
+}
+
+.exam-header-right {
+    display: flex;
+    gap: 12px;
+}
+
+.header-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #fff;
+    color: var(--text-color);
+    transition: all 0.3s;
+}
+
+.header-btn.primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.header-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(64, 112, 244, 0.1);
+}
+
+/* 标签页导航 */
+.exam-tabs-container {
+    margin-bottom: 24px;
+}
+
+.exam-tabs {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.exam-tabs a {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.exam-tabs a:hover {
+    color: var(--primary-color);
+}
+
+.exam-tabs a.active {
+    color: var(--primary-color);
+}
+
+.exam-tabs a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+/* 考试卡片 */
+.exam-card {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exam-card-title {
+    margin-bottom: 20px;
+}
+
+.exam-card-title h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+
+.exam-date {
+    font-size: 14px;
+    color: #666;
+}
+
+.exam-status-tag {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    background: rgba(255, 152, 0, 0.1);
+    color: #ff9800;
+}
+
+.exam-status-tag.signup {
+    background: rgba(82, 196, 26, 0.1);
+    color: var(--secondary-color);
+}
+
+.exam-info-row {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 20px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.exam-info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-size: 14px;
+}
+
+.exam-info-item i {
+    color: var(--primary-color);
+    font-size: 16px;
+}
+
+.exam-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.exam-action-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.exam-action-btn.start {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.exam-action-btn.signup {
+    background: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+.exam-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(64, 112, 244, 0.1);
+}
+
+/* 分页 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.pagination a {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+    transition: all 0.3s;
+}
+
+.pagination a:hover {
+    background: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+.pagination a.active {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.pagination .prev,
+.pagination .next {
+    background: var(--hover-bg);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .exam-content {
+        margin-left: 0;
+        padding: 16px;
     }
     
-    .register-right {
-        min-height: 200px;
+    .exam-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .exam-header-right {
+        width: 100%;
+    }
+    
+    .header-btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .exam-tabs {
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+    
+    .exam-info-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* 题库专栏样式 */
+.content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 24px;
+}
+
+.practice-content {
+    background: linear-gradient(135deg, #e9efff 0%, #f3f6ff 100%);
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 24px;
+}
+
+.question-bank-section {
+    padding: 24px 0;
+}
+
+.question-bank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.question-bank-card {
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.question-bank-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(64, 112, 244, 0.1);
+}
+
+.question-bank-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 16px;
+    position: relative;
+}
+
+.question-bank-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.bank-tag {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    background: rgba(255, 152, 0, 0.9);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 0 0 8px 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.question-bank-content {
+    padding: 16px;
+}
+
+.bank-desc {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.bank-features {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.feature {
+    font-size: 13px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.feature i {
+    color: var(--secondary-color);
+    font-size: 14px;
+}
+
+.bank-summary {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px dashed #eee;
+    padding-top: 12px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #666;
+}
+
+.summary-item i {
+    color: var(--primary-color);
+}
+
+.question-bank-footer {
+    padding: 12px 16px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.bank-link {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.bank-link:hover {
+    color: #3464E0;
+    transform: translateX(5px);
+}
+
+/* 题库分类导航 */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: var(--card-bg);
+    min-width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 8px;
+    z-index: 1000;
+}
+
+.nav-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px 16px;
+    color: var(--text-color);
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+/* 题库分类页面样式 */
+.practice-header {
+    margin-bottom: 32px;
+}
+
+.practice-header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.practice-header p {
+    font-size: 16px;
+    color: #666;
+}
+
+.category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.category-container {
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+}
+
+.category-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.category-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.spring-tag, .summer-tag, .autumn-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+.spring-tag {
+    background: rgba(82, 196, 26, 0.9);
+}
+
+.summer-tag {
+    background: rgba(250, 173, 20, 0.9);
+}
+
+.autumn-tag {
+    background: rgba(245, 106, 0, 0.9);
+}
+
+.category-content {
+    padding: 20px;
+    display: flex;
+}
+
+.category-desc {
+    flex: 1;
+    padding-right: 20px;
+    border-right: 1px dashed #eee;
+}
+
+.category-desc p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.category-items {
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    gap: 12px;
+}
+
+.category-item {
+    color: var(--primary-color);
+    font-size: 14px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--hover-bg);
+    transition: all 0.3s;
+}
+
+.category-item:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .category-content {
+        flex-direction: column;
+    }
+    
+    .category-desc {
+        border-right: none;
+        border-bottom: 1px dashed #eee;
+        padding-right: 0;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .category-items {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+    }
+    
+    .dropdown-content {
+        left: 0;
+        top: 100%;
     }
 } 
