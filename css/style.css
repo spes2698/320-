@@ -131,7 +131,7 @@ body {
 .search-input {
     width: 100%;
     height: 44px;
-    padding: 8px 44px 8px 44px;
+    padding: 8px 60px 8px 44px; /* 右侧增加空间放置搜索按钮 */
     border: 1px solid var(--border-color);
     border-radius: 12px;
     font-size: 14px;
@@ -144,6 +144,70 @@ body {
     border-color: var(--primary-color);
     background-color: #fff;
     box-shadow: 0 0 0 3px rgba(64, 112, 244, 0.1);
+}
+
+/* 搜题页面的搜索框样式 */
+.main-search-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.main-search-wrapper .search-actions {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.main-search-wrapper .search-btn {
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.main-search-input {
+    width: 100%;
+    padding: 15px 160px 15px 20px; /* 右侧增加空间放置按钮 */
+    font-size: 16px;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: #999;
+    opacity: 0.8;
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.search-btn:hover {
+    background-color: #3464E0;
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 2px 6px rgba(64, 112, 244, 0.3);
+}
+
+.search-btn i {
+    font-size: 16px;
 }
 
 .user-actions a {
@@ -198,6 +262,15 @@ body {
     
     .search-box {
         max-width: none;
+    }
+    
+    .search-btn {
+        width: 36px;
+        height: 32px;
+    }
+    
+    .search-input {
+        padding-right: 50px;
     }
 }
 
@@ -501,33 +574,6 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* 搜索框样式 */
-.search-input::placeholder {
-    color: #999;
-}
-
-.search-btn {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-}
-
-.search-btn:hover {
-    color: var(--primary-color);
-    background: rgba(24, 144, 255, 0.1);
-}
-
 /* 响应式设计 */
 @media (max-width: 1200px) {
     .search-input {
@@ -600,70 +646,76 @@ body {
 
 /* 个人中心卡片 */
 .profile-card {
-    margin: 24px;
-    padding: 20px;
     background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(64, 112, 244, 0.1);
     backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
 .profile-header {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 15px;
 }
 
 .profile-avatar {
     width: 48px;
     height: 48px;
-    border-radius: 12px;
-    background: var(--primary-color);
+    background-color: var(--primary-color);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 24px;
+    font-size: 22px;
+}
+
+.profile-info {
+    flex: 1;
 }
 
 .profile-info h3 {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-color);
+    margin-bottom: 3px;
 }
 
 .profile-info p {
-    font-size: 13px;
-    color: #666;
-    margin-top: 4px;
+    font-size: 12px;
+    color: #888;
 }
 
 .profile-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 16px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f9ff;
+    border-radius: 8px;
+    padding: 10px 0;
 }
 
 .stat-item {
-    text-align: center;
-    padding: 8px;
-    background: rgba(64, 112, 244, 0.05);
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    cursor: pointer;
 }
 
 .stat-item h4 {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
     color: var(--primary-color);
+    margin-bottom: 2px;
 }
 
 .stat-item p {
     font-size: 12px;
     color: #666;
-    margin-top: 4px;
 }
 
 /* 设置按钮 */
@@ -2520,4 +2572,27 @@ body {
     .plan-container {
         grid-template-columns: 1fr;
     }
+}
+
+.profile-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.profile-card-link:hover .profile-card {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.profile-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 } 

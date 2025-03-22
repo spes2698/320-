@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>刷题练习 - 大厂实习笔试全真模拟题库</title>
+    <title>题库分类 - 大厂实习笔试全真模拟题库</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- 添加图标库 -->
@@ -27,7 +27,7 @@
                 <li class="has-submenu">
                     <a href="practice.html" class="active">
                         <i class="fas fa-tasks"></i>
-                        刷题练习
+                        题库分类
                     </a>
                     <ul class="sub-menu">
                         <li><a href="#internet" class="active">互联网题库</a></li>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#profile">
+                    <a href="profile.html">
                         <i class="fas fa-user"></i>
                         个人中心
                     </a>
@@ -67,32 +67,34 @@
         </nav>
         
         <!-- 个人中心卡片 -->
-        <div class="profile-card">
-            <div class="profile-header">
-                <div class="profile-avatar">
-                    <i class="fas fa-user"></i>
+        <a href="login.html" class="profile-card-link">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3>未登录</h3>
+                        <p>登录后享受更多功能</p>
+                    </div>
                 </div>
-                <div class="profile-info">
-                    <h3>未登录</h3>
-                    <p>登录后享受更多功能</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <h4>0</h4>
+                        <p>已做题目</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>0</h4>
+                        <p>收藏题目</p>
+                    </div>
                 </div>
             </div>
-            <div class="profile-stats">
-                <div class="stat-item">
-                    <h4>0</h4>
-                    <p>已做题目</p>
-                </div>
-                <div class="stat-item">
-                    <h4>0</h4>
-                    <p>收藏题目</p>
-                </div>
-            </div>
-        </div>
+        </a>
 
         <!-- 设置按钮 -->
-        <a href="#settings" class="settings-btn">
+        <a href="profile.html" class="settings-btn">
             <i class="fas fa-cog"></i>
-            设置
+            主题设置
         </a>
     </aside>
 
@@ -116,7 +118,7 @@
         <!-- 内容区域 -->
         <main class="main">
             <div class="practice-content">
-                <h1 class="page-title">刷题练习</h1>
+                <h1 class="page-title">题库分类</h1>
                 <p class="page-subtitle">海量题库分类练习，根据不同行业和企业类型有针对性地备战笔试</p>
                 
                 <!-- 网申题库 -->
