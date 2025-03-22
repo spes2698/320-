@@ -8,208 +8,6 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- 添加图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* 侧边栏子菜单样式 */
-        .sub-menu {
-            margin-left: 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .sub-menu.open {
-            max-height: 500px;
-        }
-
-        .active + .sub-menu {
-            max-height: 500px;
-        }
-
-        .sub-menu li {
-            margin: 8px 0;
-        }
-
-        .sub-menu a {
-            display: block;
-            color: rgba(0, 0, 0, 0.65);
-            font-size: 14px;
-            padding: 6px 0 6px 20px;
-            border-left: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .sub-menu a:hover, .sub-menu a.active {
-            color: var(--primary-color);
-            border-left: 2px solid var(--primary-color);
-            background-color: rgba(64, 112, 244, 0.1);
-        }
-
-        /* 刷题练习页面样式 */
-        .practice-content {
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: calc(100vh - 60px);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .page-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .page-subtitle {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin: 20px 0;
-            color: #333;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-        }
-
-        .question-bank-section {
-            margin-bottom: 40px;
-        }
-
-        .question-bank-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .question-bank-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .question-bank-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .question-bank-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .question-bank-header h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .tag-count {
-            background-color: #e6f7ff;
-            color: #1890ff;
-            font-size: 12px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        .tag-hot {
-            background-color: #fff2e8;
-            color: #fa541c;
-            font-size: 12px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        .question-bank-desc {
-            margin: 15px 0;
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-            height: 63px;
-            overflow: hidden;
-        }
-
-        .question-bank-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .question-bank-difficulty {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .question-bank-link {
-            color: var(--primary-color);
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-
-        .question-bank-link i {
-            margin-left: 5px;
-            font-size: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .question-bank-link:hover {
-            color: #2e59d9;
-        }
-
-        .question-bank-link:hover i {
-            transform: translateX(3px);
-        }
-
-        /* 响应式调整 */
-        @media (max-width: 991px) {
-            .question-bank-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            .practice-content {
-                padding: 15px;
-            }
-            
-            .page-title {
-                font-size: 24px;
-            }
-            
-            .page-subtitle {
-                font-size: 14px;
-            }
-            
-            .section-title {
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .question-bank-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .question-bank-card {
-                padding: 15px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- 左侧导航栏 -->
@@ -226,7 +24,7 @@
                         首页
                     </a>
                 </li>
-                <li>
+                <li class="has-submenu">
                     <a href="practice.html" class="active">
                         <i class="fas fa-tasks"></i>
                         刷题练习
@@ -321,21 +119,33 @@
                 <h1 class="page-title">刷题练习</h1>
                 <p class="page-subtitle">海量题库分类练习，根据不同行业和企业类型有针对性地备战笔试</p>
                 
-                <!-- 题库分类 -->
+                <!-- 网申题库 -->
                 <section id="netapp" class="question-bank-section">
-                    <h2 class="section-title">网申题库</h2>
+                    <h2 class="section-title">网申题库<span class="section-count">共3个题库</span></h2>
                     <div class="question-bank-grid">
                         <div class="question-bank-card">
                             <div class="question-bank-header">
                                 <h3>行测题库</h3>
                                 <span class="tag tag-count">1200题</span>
                             </div>
-                            <p class="question-bank-desc">包含公务员行测常见题型，覆盖言语理解、数量关系、判断推理、资料分析等全部内容</p>
+                            <div class="question-bank-desc">
+                                包含公务员行测常见题型，覆盖言语理解、数量关系、判断推理、资料分析等全部内容
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>2.3k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：中等
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="question-bank-card">
@@ -343,12 +153,24 @@
                                 <h3>性格测试</h3>
                                 <span class="tag tag-count">500题</span>
                             </div>
-                            <p class="question-bank-desc">各类企业常用性格测试题目汇总，包含MBTI、大五人格等主流测评题型</p>
+                            <div class="question-bank-desc">
+                                各类企业常用性格测试题目汇总，包含MBTI、大五人格等主流测评题型
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>1.8k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：简单
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="question-bank-card">
@@ -356,12 +178,24 @@
                                 <h3>情景测试</h3>
                                 <span class="tag tag-count">300题</span>
                             </div>
-                            <p class="question-bank-desc">企业常见情景测试题，帮助你了解如何在工作场景中做出合适的决策</p>
+                            <div class="question-bank-desc">
+                                企业常见情景测试题，帮助你了解如何在工作场景中做出合适的决策
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>1.2k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.5分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：中等
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -369,19 +203,31 @@
                 
                 <!-- 互联网题库 -->
                 <section id="internet" class="question-bank-section">
-                    <h2 class="section-title">互联网题库</h2>
+                    <h2 class="section-title">互联网题库<span class="section-count">共4个题库</span></h2>
                     <div class="question-bank-grid">
                         <div class="question-bank-card">
                             <div class="question-bank-header">
                                 <h3>字节跳动</h3>
                                 <span class="tag tag-hot">热门</span>
                             </div>
-                            <p class="question-bank-desc">字节跳动实习生笔试真题，包含算法、编程、逻辑思维等多种题型</p>
+                            <div class="question-bank-desc">
+                                字节跳动实习生笔试真题，包含算法、编程、逻辑思维等多种题型
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>3.2k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：困难
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="question-bank-card">
@@ -389,12 +235,24 @@
                                 <h3>阿里巴巴</h3>
                                 <span class="tag tag-hot">热门</span>
                             </div>
-                            <p class="question-bank-desc">阿里巴巴历年实习生笔试真题，覆盖技术、产品、运营等多个岗位</p>
+                            <div class="question-bank-desc">
+                                阿里巴巴历年实习生笔试真题，覆盖技术、产品、运营等多个岗位
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>2.8k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：困难
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="question-bank-card">
@@ -402,93 +260,168 @@
                                 <h3>腾讯</h3>
                                 <span class="tag tag-hot">热门</span>
                             </div>
-                            <p class="question-bank-desc">腾讯实习生笔试题库，包含技术、产品、设计等多个方向的笔试题目</p>
+                            <div class="question-bank-desc">
+                                腾讯实习生笔试题库，包含技术、产品、设计等多个方向的笔试题目
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>2.5k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：困难
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="question-bank-card">
                             <div class="question-bank-header">
                                 <h3>百度</h3>
+                                <span class="tag tag-count">800题</span>
                             </div>
-                            <p class="question-bank-desc">百度实习生笔试真题集锦，涵盖算法、编程等核心考察内容</p>
+                            <div class="question-bank-desc">
+                                百度实习生笔试真题集锦，涵盖算法、编程等核心考察内容
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>1.9k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.5分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：中等
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </section>
                 
-                <!-- 其他类别可以继续添加 -->
+                <!-- 三大运营商 -->
                 <section id="telecom" class="question-bank-section">
-                    <h2 class="section-title">三大运营商</h2>
+                    <h2 class="section-title">三大运营商<span class="section-count">共3个题库</span></h2>
                     <div class="question-bank-grid">
                         <div class="question-bank-card">
                             <div class="question-bank-header">
                                 <h3>中国移动</h3>
+                                <span class="tag tag-count">650题</span>
                             </div>
-                            <p class="question-bank-desc">中国移动校园招聘实习生笔试真题，包含专业知识、行测、英语等内容</p>
+                            <div class="question-bank-desc">
+                                中国移动校园招聘实习生笔试真题，包含专业知识、行测、英语等内容
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>1.5k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.4分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：中等
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="question-bank-card">
                             <div class="question-bank-header">
                                 <h3>中国电信</h3>
+                                <span class="tag tag-count">580题</span>
                             </div>
-                            <p class="question-bank-desc">中国电信实习生招聘笔试题，包含通信原理、计算机网络等专业知识</p>
+                            <div class="question-bank-desc">
+                                中国电信实习生招聘笔试题，包含通信原理、计算机网络等专业知识
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>1.3k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.3分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：中等
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="question-bank-card">
                             <div class="question-bank-header">
                                 <h3>中国联通</h3>
+                                <span class="tag tag-count">520题</span>
                             </div>
-                            <p class="question-bank-desc">中国联通实习生笔试真题，涵盖行测、专业知识和英语等多个方面</p>
+                            <div class="question-bank-desc">
+                                中国联通实习生笔试真题，涵盖行测、专业知识和英语等多个方面
+                            </div>
+                            <div class="question-stats">
+                                <div class="question-stats-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>1.1k人学习</span>
+                                </div>
+                                <div class="question-stats-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.2分</span>
+                                </div>
+                            </div>
                             <div class="question-bank-footer">
                                 <span class="question-bank-difficulty">
                                     <i class="fas fa-signal"></i> 难度：中等
                                 </span>
-                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-chevron-right"></i></a>
+                                <a href="#" class="question-bank-link">开始练习 <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </section>
                 
                 <!-- 添加更多题库分类... -->
+                <section id="bigfour" class="question-bank-section">
+                    <h2 class="section-title">四大笔试专栏<span class="section-count">共4个题库</span></h2>
+                    <div class="question-bank-grid">
+                        <!-- 内容省略... -->
+                    </div>
+                </section>
             </div>
         </main>
     </div>
 
     <script src="js/main.js"></script>
     <script>
-        // 处理子菜单的展开收缩
         document.addEventListener('DOMContentLoaded', function() {
-            // 确保刷题练习的子菜单默认展开
-            const practiceLi = document.querySelector('.nav li:nth-child(2)');
+            // 获取刷题练习菜单项及其子菜单
+            const practiceLi = document.querySelector('.nav li.has-submenu');
+            const practiceLink = practiceLi.querySelector('a');
             const subMenu = practiceLi.querySelector('.sub-menu');
             
+            // 初始状态设置
             if (practiceLi && subMenu) {
-                // 由于当前在刷题练习页面，确保子菜单默认展开
-                subMenu.classList.add('open');
+                // 如果当前页面是刷题练习页面，默认展开子菜单
+                if (practiceLink.classList.contains('active')) {
+                    subMenu.classList.add('open');
+                    practiceLi.classList.add('submenu-open');
+                }
                 
                 // 点击刷题练习菜单项时的展开/收缩逻辑
-                practiceLi.querySelector('a').addEventListener('click', function(e) {
-                    e.preventDefault();
-                    subMenu.classList.toggle('open');
+                practiceLink.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止默认的链接跳转
+                    subMenu.classList.toggle('open'); // 切换open类，实现展开/收缩
+                    practiceLi.classList.toggle('submenu-open'); // 切换父元素的状态类
                 });
             }
             
@@ -515,6 +448,18 @@
                         });
                     }
                 });
+            });
+            
+            // 添加全局事件监听，点击其他区域关闭子菜单
+            document.addEventListener('click', function(e) {
+                // 如果点击的不是刷题练习菜单或其子元素，并且子菜单当前是展开状态
+                if (!practiceLi.contains(e.target) && subMenu.classList.contains('open')) {
+                    // 仅在非刷题练习页面时关闭子菜单
+                    if (!practiceLink.classList.contains('active')) {
+                        subMenu.classList.remove('open');
+                        practiceLi.classList.remove('submenu-open');
+                    }
+                }
             });
         });
     </script>

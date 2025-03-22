@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 大厂实习笔试全真模拟题库</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fas fa-book"></i>
+            大厂题库
+        </div>
+        <nav class="nav">
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="has-submenu">
+                    <a href="practice.html">
+                        <i class="fas fa-tasks"></i>
+                        刷题练习
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="practice.html#internet">互联网题库</a></li>
+                        <li><a href="practice.html#telecom">三大运营商</a></li>
+                        <li><a href="practice.html#bigfour">四大笔试专栏</a></li>
+                        <li><a href="practice.html#banks">五大银行题库</a></li>
+                        <li><a href="practice.html#sharebanks">股份银行题库</a></li>
+                        <li><a href="practice.html#oilcompanies">三桶油题库</a></li>
+                        <li><a href="practice.html#securities">券商基金题库</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="wrong.html">
+                        <i class="fas fa-bookmark"></i>
+                        错题笔记
+                    </a>
+                </li>
+                <li>
+                    <a href="search.html">
+                        <i class="fas fa-search"></i>
+                        搜题功能
+                    </a>
+                </li>
+                <li>
+                    <a href="exam.html">
+                        <i class="fas fa-edit"></i>
+                        模拟考试
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="active">
+                        <i class="fas fa-user"></i>
+                        个人中心
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- 个人中心卡片 -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>未登录</h3>
+                    <p>登录后享受更多功能</p>
+                </div>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <h4>0</h4>
+                    <p>已做题目</p>
+                </div>
+                <div class="stat-item">
+                    <h4>0</h4>
+                    <p>收藏题目</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置按钮 -->
+        <a href="#settings" class="settings-btn">
+            <i class="fas fa-cog"></i>
+            主题设置
+        </a>
+    </aside>
+
+    <!-- 主要内容区 -->
+    <div class="main-container">
+        <!-- 顶部栏 -->
+        <div class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="搜索题目、考试、笔记..." class="search-input">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="user-actions">
+                <a href="login.html"><button class="btn-login">登录</button></a>
+                <a href="register.html"><button class="btn-register">注册</button></a>
+            </div>
+        </div>
+
+        <!-- 个人中心内容区域 -->
+        <main class="main">
+            <div class="profile-content">
+                <h1 class="page-title">个人中心</h1>
+                <p class="page-subtitle">查看学习数据统计和个人信息管理</p>
+
+                <!-- 个人信息编辑区域 -->
+                <section class="profile-section user-info-section">
+                    <h2 class="section-title">个人信息</h2>
+                    <div class="user-info-container">
+                        <div class="user-avatar-container">
+                            <div class="user-avatar-wrapper">
+                                <img src="https://via.placeholder.com/150" alt="用户头像" class="user-avatar">
+                                <div class="avatar-edit-overlay">
+                                    <i class="fas fa-camera"></i>
+                                    <span>更换头像</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-details">
+                            <div class="user-detail-row">
+                                <div class="user-detail-label">用户名</div>
+                                <div class="user-detail-value">CodeMaster123</div>
+                                <button class="user-detail-edit"><i class="fas fa-pencil-alt"></i></button>
+                            </div>
+                            <div class="user-detail-row">
+                                <div class="user-detail-label">学校/公司</div>
+                                <div class="user-detail-value">北京大学</div>
+                                <button class="user-detail-edit"><i class="fas fa-pencil-alt"></i></button>
+                            </div>
+                            <div class="user-detail-row">
+                                <div class="user-detail-label">专业/职位</div>
+                                <div class="user-detail-value">计算机科学与技术</div>
+                                <button class="user-detail-edit"><i class="fas fa-pencil-alt"></i></button>
+                            </div>
+                            <div class="user-detail-row">
+                                <div class="user-detail-label">邮箱</div>
+                                <div class="user-detail-value">example@email.com</div>
+                                <button class="user-detail-edit"><i class="fas fa-pencil-alt"></i></button>
+                            </div>
+                            <div class="user-detail-row">
+                                <div class="user-detail-label">个人简介</div>
+                                <div class="user-detail-value user-bio">热爱编程，目标是在大厂实习并获得优秀的offer。擅长算法和数据结构，正在准备春招笔试。</div>
+                                <button class="user-detail-edit"><i class="fas fa-pencil-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 学习数据概览 -->
+                <section class="profile-overview">
+                    <h2 class="section-title">学习数据概览</h2>
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <div class="overview-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="overview-data">
+                                <h3>28</h3>
+                                <p>已完成题目</p>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="overview-data">
+                                <h3>85%</h3>
+                                <p>正确率</p>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="overview-data">
+                                <h3>12</h3>
+                                <p>学习天数</p>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="overview-data">
+                                <h3>12.5h</h3>
+                                <p>学习时长</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 账号安全设置 -->
+                <section class="profile-section">
+                    <h2 class="section-title">账号安全</h2>
+                    <div class="security-container">
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3 class="security-title">修改密码</h3>
+                                <p class="security-desc">定期修改密码可以提高账号安全性</p>
+                            </div>
+                            <button class="security-btn">修改</button>
+                        </div>
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3 class="security-title">绑定手机</h3>
+                                <p class="security-desc">已绑定：138****1234</p>
+                            </div>
+                            <button class="security-btn">更换</button>
+                        </div>
+                        <div class="security-card">
+                            <div class="security-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="security-content">
+                                <h3 class="security-title">绑定邮箱</h3>
+                                <p class="security-desc">用于接收重要通知和找回密码</p>
+                            </div>
+                            <button class="security-btn">绑定</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 学习进度 -->
+                <section class="profile-section">
+                    <h2 class="section-title">学习进度</h2>
+                    <div class="progress-cards">
+                        <div class="progress-card">
+                            <div class="progress-header">
+                                <h3>字节跳动2024春季实习笔试</h3>
+                                <span class="progress-badge">进行中</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 65%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>65% 完成</span>
+                                <span>13/20 题</span>
+                            </div>
+                            <div class="progress-footer">
+                                <button class="progress-btn">继续学习</button>
+                            </div>
+                        </div>
+                        <div class="progress-card">
+                            <div class="progress-header">
+                                <h3>腾讯2024春季实习笔试</h3>
+                                <span class="progress-badge completed">已完成</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar completed" style="width: 100%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>100% 完成</span>
+                                <span>15/15 题</span>
+                            </div>
+                            <div class="progress-footer">
+                                <button class="progress-btn">查看结果</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 最近活动 -->
+                <section class="profile-section">
+                    <h2 class="section-title">最近活动</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">完成了模拟考试 <a href="exam.html">字节跳动2024春季实习笔试</a></div>
+                                <div class="activity-time">2小时前</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">收藏了题目 <a href="practice.html">二叉树的层序遍历</a></div>
+                                <div class="activity-time">昨天</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">添加了错题笔记 <a href="wrong.html">动态规划经典问题</a></div>
+                                <div class="activity-time">2天前</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">练习了题目 <a href="practice.html">HTTP协议基础知识</a></div>
+                                <div class="activity-time">3天前</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 我的收藏 -->
+                <section class="profile-section">
+                    <h2 class="section-title">我的收藏</h2>
+                    <div class="collection-grid">
+                        <div class="collection-card">
+                            <div class="collection-header">
+                                <span class="collection-tag">算法</span>
+                                <button class="collection-action"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                            <h3 class="collection-title">二叉树的层序遍历</h3>
+                            <p class="collection-desc">给你一个二叉树，请你返回其按层序遍历得到的节点值。</p>
+                            <div class="collection-footer">
+                                <span class="collection-difficulty"><i class="fas fa-signal"></i> 中等</span>
+                                <a href="practice.html" class="collection-link">查看题目 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="collection-card">
+                            <div class="collection-header">
+                                <span class="collection-tag">网络</span>
+                                <button class="collection-action"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                            <h3 class="collection-title">HTTP协议基础知识</h3>
+                            <p class="collection-desc">HTTP协议的主要特点、HTTP请求方法及状态码详解。</p>
+                            <div class="collection-footer">
+                                <span class="collection-difficulty"><i class="fas fa-signal"></i> 简单</span>
+                                <a href="practice.html" class="collection-link">查看题目 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="collection-card">
+                            <div class="collection-header">
+                                <span class="collection-tag">操作系统</span>
+                                <button class="collection-action"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                            <h3 class="collection-title">进程与线程的区别</h3>
+                            <p class="collection-desc">详细解析进程与线程的区别、各自特点及使用场景。</p>
+                            <div class="collection-footer">
+                                <span class="collection-difficulty"><i class="fas fa-signal"></i> 中等</span>
+                                <a href="practice.html" class="collection-link">查看题目 <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-more">
+                        <a href="#" class="view-more-btn">查看更多收藏 <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </section>
+
+                <!-- 学习计划 -->
+                <section class="profile-section">
+                    <h2 class="section-title">学习计划</h2>
+                    <div class="plan-container">
+                        <div class="plan-card">
+                            <div class="plan-header">
+                                <div class="plan-title">春招备战计划</div>
+                                <span class="plan-status active">进行中</span>
+                            </div>
+                            <div class="plan-progress">
+                                <div class="plan-progress-text">
+                                    <span>进度：7/30天</span>
+                                    <span>23%</span>
+                                </div>
+                                <div class="plan-progress-bar">
+                                    <div class="plan-progress-fill" style="width: 23%;"></div>
+                                </div>
+                            </div>
+                            <div class="plan-tasks">
+                                <div class="plan-task">
+                                    <input type="checkbox" checked id="task1" />
+                                    <label for="task1">完成算法模块</label>
+                                </div>
+                                <div class="plan-task">
+                                    <input type="checkbox" id="task2" />
+                                    <label for="task2">刷完网络模块</label>
+                                </div>
+                                <div class="plan-task">
+                                    <input type="checkbox" id="task3" />
+                                    <label for="task3">完成3次模拟测试</label>
+                                </div>
+                            </div>
+                            <button class="plan-btn">管理计划</button>
+                        </div>
+                        <div class="add-plan-card">
+                            <div class="add-plan-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="add-plan-text">创建新的学习计划</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取刷题练习菜单项及其子菜单
+            const practiceLi = document.querySelector('.nav li.has-submenu');
+            if (practiceLi) {
+                const practiceLink = practiceLi.querySelector('a');
+                const subMenu = practiceLi.querySelector('.sub-menu');
+                
+                // 点击刷题练习菜单项时的展开/收缩逻辑
+                practiceLink.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止默认的链接跳转
+                    subMenu.classList.toggle('open'); // 切换open类，实现展开/收缩
+                    practiceLi.classList.toggle('submenu-open'); // 切换父元素的状态类
+                });
+            }
+            
+            // 头像编辑悬停效果
+            const avatarWrapper = document.querySelector('.user-avatar-wrapper');
+            const avatarOverlay = document.querySelector('.avatar-edit-overlay');
+            
+            if (avatarWrapper && avatarOverlay) {
+                avatarWrapper.addEventListener('mouseenter', function() {
+                    avatarOverlay.style.opacity = '1';
+                });
+                
+                avatarWrapper.addEventListener('mouseleave', function() {
+                    avatarOverlay.style.opacity = '0';
+                });
+                
+                avatarWrapper.addEventListener('click', function() {
+                    // 点击时可以触发文件上传
+                    alert('上传新头像功能将在未来版本中开放');
+                });
+            }
+            
+            // 个人信息编辑
+            const editButtons = document.querySelectorAll('.user-detail-edit');
+            
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const valueElement = this.previousElementSibling;
+                    const currentValue = valueElement.textContent;
+                    
+                    // 创建编辑输入框
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = currentValue;
+                    input.className = 'user-detail-input';
+                    
+                    // 替换显示为输入框
+                    valueElement.textContent = '';
+                    valueElement.appendChild(input);
+                    input.focus();
+                    
+                    // 输入框失去焦点时更新值
+                    input.addEventListener('blur', function() {
+                        valueElement.textContent = this.value;
+                    });
+                    
+                    // 按Enter键时确认
+                    input.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            valueElement.textContent = this.value;
+                        }
+                    });
+                });
+            });
+            
+            // 安全选项点击
+            const securityButtons = document.querySelectorAll('.security-btn');
+            
+            securityButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.textContent;
+                    alert(`${action}功能将在未来版本中开放`);
+                });
+            });
+            
+            // 学习计划管理
+            const planBtn = document.querySelector('.plan-btn');
+            const addPlanCard = document.querySelector('.add-plan-card');
+            
+            if (planBtn) {
+                planBtn.addEventListener('click', function() {
+                    alert('计划管理功能将在未来版本中开放');
+                });
+            }
+            
+            if (addPlanCard) {
+                addPlanCard.addEventListener('click', function() {
+                    alert('创建新学习计划功能将在未来版本中开放');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
